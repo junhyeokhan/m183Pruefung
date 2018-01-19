@@ -18,7 +18,14 @@ namespace Pruefung_Praktisch_Musterloesung.Controllers
         /**
         * 
         * ANTWORTEN BITTE HIER
+        * Session Fixation
+        * User A sends User B a link with his/her sessionID
+        * User B logs in with the sent session and activates the session
+        * User A has access to User B
         * 
+        * SQL Injections
+        * User enters ' OR 1=1;/* in username and * /-- in Passworrd
+        * Query always returns true with there parameters, and therefore user can log in
         * */
 
         public ActionResult Index() {
@@ -43,11 +50,15 @@ namespace Pruefung_Praktisch_Musterloesung.Controllers
             var password = Request["password"];
             var sessionid = Request.QueryString["sid"];
 
-            // hints:
-            //var used_browser = Request.Browser.Platform;
-            //var ip = Request.UserHostAddress;
+            var used_browser = Request.Browser.Platform;
+            var ip = Request.UserHostAddress;
 
             Lab2Userlogin model = new Lab2Userlogin();
+
+            if (!model.checkUserEnvironment(username, password, used_browser, ip))
+            {
+                throw new UnauthorizedAccessException();
+            }
 
             if (model.checkCredentials(username, password))
             {
@@ -81,11 +92,15 @@ namespace Pruefung_Praktisch_Musterloesung.Controllers
                 sessionid = Request.QueryString["sid"];
             }
             
-            // hints:
-            //var used_browser = Request.Browser.Platform;
-            //var ip = Request.UserHostAddress;
+            var used_browser = Request.Browser.Platform;
+            var ip = Request.UserHostAddress;
 
             Lab2Userlogin model = new Lab2Userlogin();
+
+            if (!model.checkUserEnvironment(username, password, used_browser, ip))
+            {
+                throw new UnauthorizedAccessException();
+            }
 
             if (model.checkSessionInfos(sessionid))
             {

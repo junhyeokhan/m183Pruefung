@@ -16,8 +16,10 @@ namespace Pruefung_Praktisch_Musterloesung.Controllers
          * /Index?type=..
          * User can travel to parents directory recursively
          * 
-         * File Inclusion
+         * Direectory listing
          * 
+         * User can see all the files in the directory.
+         * /Detail?file=..
          * */
 
 

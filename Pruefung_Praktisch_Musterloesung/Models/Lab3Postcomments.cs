@@ -33,6 +33,19 @@ namespace Pruefung_Praktisch_Musterloesung.Models
             return res > 0;
         }
 
+        public string escapeComment(string comment)
+        {
+            // Escape special characters e.g. < or >
+            // return processed string
+            return comment;
+        }
+        public string escapeCredentials(string credential)
+        {
+            // Escape illegal queries e.g. ' OR 1=1;/* in username and * /-- in Password
+            // return processed strings
+            return credential;
+        }
+
         public List<List<string>> getAllData()
         {
             SqlConnection con = this.setUp();

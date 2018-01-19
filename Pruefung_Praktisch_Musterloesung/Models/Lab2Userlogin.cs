@@ -35,6 +35,15 @@ namespace Pruefung_Praktisch_Musterloesung.Models
             return ret;
         }
 
+        public bool checkUserEnvironment(string username, string password, string browser, string ip)
+        {
+            // Get user
+            // Check if there was any log with browser and ip
+            // Return false if there wasn't anything or block the user...
+
+            return true;
+        }
+
         public bool storeSessionInfos(string username, string password, string sessionid)
         {
             if (string.IsNullOrEmpty(sessionid)) return false;
