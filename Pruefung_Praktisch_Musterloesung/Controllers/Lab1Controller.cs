@@ -12,6 +12,11 @@ namespace Pruefung_Praktisch_Musterloesung.Controllers
         /**
          * 
          * ANTWORTEN BITTE HIER
+         * Directory Traversal
+         * /Index?type=..
+         * User can travel to parents directory recursively
+         * 
+         * File Inclusion
          * 
          * */
 
@@ -19,6 +24,11 @@ namespace Pruefung_Praktisch_Musterloesung.Controllers
         public ActionResult Index()
         {
             var type = Request.QueryString["type"];
+
+            if (type.Contains(".."))
+            {
+                throw new Exception();
+            }
 
             if (string.IsNullOrEmpty(type))
             {
